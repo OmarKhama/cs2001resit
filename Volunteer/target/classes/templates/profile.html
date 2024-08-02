@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile Management</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Update Profile</h1>
+
+    <form th:action="@{/profile}" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:value="${user.name}" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:value="${user.email}" required>
+        </div>
+        <div>
+            <label for="skills">Skills:</label>
+            <textarea id="skills" name="skills" rows="4" required th:text="${user.skills}"></textarea>
+        </div>
+        <div>
+            <label for="contributions">Past Contributions:</label>
+            <textarea id="contributions" name="contributions" rows="4" required th:text="${user.contributions}"></textarea>
+        </div>
+        <div>
+            <button type="submit">Update Profile</button>
+        </div>
+        <!-- Display update error or success message -->
+        <div th:if="${updateError}">
+            <p th:text="${updateError}" style="color: red;"></p>
+        </div>
+        <div th:if="${updateSuccess}">
+            <p th:text="${updateSuccess}" style="color: green;"></p>
+        </div>
+    </form>
+
+    <div>
+        <a th:href="@{/}">Back to Home</a>
+    </div>
+</body>
+</html>
